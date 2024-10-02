@@ -1,19 +1,17 @@
-// src/App.js
-import React from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Home from './home/Home'; // Import the Home component
+import Home from './home/Home';
 import Navbar from './Components/Navbar/Navbar';
 
-
-
 function App() {
-  // const[theme,setTheme]=useState('light');
+  const [sidebar, setSidebar] = useState(false);
+
   return (
     <Router>
-      <Navbar />
+      <Navbar sidebar={sidebar} setSidebar={setSidebar} />
       <Routes>
-        {/* Define the route for the Home component */}
-        <Route path="/" element={<Home  />} />
+        {/* Pass sidebar and setSidebar as props to Home */}
+        <Route path="/" element={<Home sidebar={sidebar} setSidebar={setSidebar} />} />
       </Routes>
     </Router>
   );

@@ -1,20 +1,21 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './home.css';
-import addBtn from '../assets/add-30.png';
-import msg from "../assets/message.svg";
-import home from '../assets/home.svg';
-import saved from '../assets/bookmark.svg';
-import rocket from '../assets/rocket.svg';
+// import addBtn from '../assets/add-30.png';
+// import msg from "../assets/message.svg";
+// import home from '../assets/home.svg';
+// import saved from '../assets/bookmark.svg';
+// import rocket from '../assets/rocket.svg';
 import sendBtn from '../assets/send.svg';
 import user from '../assets/user-icon.png';
 import gptImg from '../assets/chatgptLogo.svg';
-import gptLogo from '../assets/chatgpt.svg';
+// import gptLogo from '../assets/chatgpt.svg';
 import plus from '../assets/add.svg';
+import Sidebar from '../Components/Sidebar/Sidebare';
 // import light_home from '../assets/home_dark.svg'
 // import light_rocket from '../assets/rocket_dark.svg'
 // import light_saved from '../assets/bookmark_dark.svg'
 
-const Home = ({ theme, setTheme }) => { 
+const Home = ({ sidebar }) => { 
   const [chatMessages, setChatMessages] = useState([]);
   const [inputValue, setInputValue] = useState('');
   const chatContainerRef = useRef(null);
@@ -75,39 +76,19 @@ const Home = ({ theme, setTheme }) => {
     }
   }, [chatMessages]);
 
+  
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      sendMessage();
+    }
+  };
+
   return (
     <div className={`App `}>
-      <div className="sideBar">
-        <div className="upperSide">
-          <div className="upperSideTop">
-            <img src={gptLogo} alt="logo" className="logo" />
-            <span className="brand">ChatBot</span>
-          </div>
-          <button className="midBtn">
-            <img alt="add" src={addBtn} className="addBtn" />
-            New Chat
-          </button>
-          <div className="upperSideBottom">
-            <button className="query">
-              <img alt="query" src={msg} className="Query" /> What is programming
-            </button>
-          </div>
-        </div>
-        <div className="lowerSide">
-          <div className="listItems">
-            <img src={home}  alt="home" className="listitemsImg" />
-            Home
-          </div>
-          <div className="listItems">
-            <img src={saved} alt="saved" className="listitemsImg" />
-            Saved
-          </div>
-          <div className="listItems">
-            <img src={rocket} alt="rocket" className="listitemsImg" />
-            Upgrade
-          </div>
-        </div>
+      <div>
+        {sidebar && <Sidebar />}
       </div>
+     
       <div className="main">
         <div className="chats" ref={chatContainerRef}>
           {chatMessages.map((msg, index) => (
@@ -122,7 +103,13 @@ const Home = ({ theme, setTheme }) => {
             <button className="plus">
               <img src={plus} alt='add' className='add'/>
             </button>
-            <input type="text" value={inputValue} onChange={e => setInputValue(e.target.value)} placeholder="Send a message..." />
+            <input
+              type="text"
+              value={inputValue}
+              onChange={e => setInputValue(e.target.value)}
+              placeholder="Send a message..."
+              onKeyDown={handleKeyDown} 
+            />
             <button className="send" onClick={sendMessage}>
               <img src={sendBtn} alt="send" />
             </button>

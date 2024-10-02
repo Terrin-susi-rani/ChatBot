@@ -1,17 +1,23 @@
 import React, { useState } from 'react';
 import './navbar.css';
-import day_logo from '../../assets/day.png';
-import light_person from '../../assets/person_light.png';
+import user from '../../assets/user-icon.png'
+import tab from '../../assets/sidebar.svg'
 
-const Navbar = () => {
+
+const Navbar = ({ sidebar, setSidebar }) => { // Destructure props correctly
   const [open, setOpen] = useState(false);
   const Menus = ['Profile', 'Help', 'Settings', 'Logout'];
 
+  // Function to toggle the sidebar
+  const handleSidebar = () => {
+    setSidebar(!sidebar); // Properly invoke setSidebar
+  };
+
   return (
     <div className="container">
-      <img onClick={() => setOpen(!open)} src={light_person} alt="" className="toggle-icon" />
-      <img src={day_logo} alt="" className="toggle-icon" />
-
+      <img onClick={handleSidebar} src={tab} alt="" className="toggle-icon" />
+      <img onClick={() => setOpen(!open)} src={user} alt="" className="user" />
+      
       {open && (
         <div className="dropdown">
           <ul>
