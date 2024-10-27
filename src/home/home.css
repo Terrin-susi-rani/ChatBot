@@ -1,171 +1,307 @@
-/* General reset */
+
 * {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
-  overflow: hidden;
-}
-
-html {
-  font-size: 62.5%;
 }
 
 body {
-  font-family: 'Poppins', sans-serif;
-}
-
-.App {
-  min-height: 100vh;
-  display: flex;
-  margin-bottom: 10px;
-  background-color:#2B2C2F;
+  font-family: Arial, sans-serif;
+  background-color: #2B2C2F;
   color: #fff;
 }
 
+.App {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.App.sidebar-open .main {
+  margin-left: 300px;
+  margin-right: 100px;
+}
+
+
+.tooltip-container {
+  position: absolute;
+  top: 5px;
+  left: 8px;
+  width: 100px;
+}
+
+.tooltip-text {
+  visibility: hidden;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 5px;
+    padding: 5px;
+    position: absolute;
+    width: 125px;
+    z-index: 1;
+    bottom: 4%;
+    left: 60%;
+    opacity: 0;
+    transition: opacity 0.3s;
+    font-size: small;
+}
+
+.tooltip-container:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}
+
+
+.sidebar {
+  width: 200px;
+  background-color: #252735;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  padding-top: 20px;
+  transition: margin-left 0.3s;
+}
+
+
 .main {
-  min-height: calc(80vh - 17rem);
-  display: flex;
   flex: 1;
-  flex-direction: column;
-  align-items: center;
-  margin: 2rem 8rem;
-}
-
-.chatFooter {
-  margin-top: 0.5rem;
-  width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.inp {
-  padding: 0.5rem;
-  font-size: 2rem;
-  background: #202123;
-  display: flex;
-  align-items: center;
-  border-radius: 1.8rem;
-  width: 68rem;
-  position: relative;
-}
-
-.inp > input {
-  width: calc(100% - 2rem);
-  outline: none;
-  padding: 1.25rem;
-  color: white;
-}
-
-.add {
-  height: 3rem;
-  width: 3rem;
-}
-
-.inp > input,
-.send,
-.add,
-.plus {
-  background: transparent;
-  border: none;
-  margin: 0.25rem;
-}
-
-.send {
-  margin-right: 2.5rem;
+  padding: 20px;
+  margin: 20px 0;
+  background-color: #2B2C2F;
+  
 }
 
 .chats {
-  overflow: hidden;
-  overflow-y: scroll;
+  flex: 1;
+  overflow-y: auto;
+  padding-right: 10px;
+  margin-bottom: 15px;
   scroll-behavior: smooth;
-  width: 100%;
-  max-width: 70rem;
-  height: calc(100vh - 22rem);
-  margin-bottom: 2rem;
-  scrollbar-width: none; /* For Firefox */
-  -ms-overflow-style: none;
-}
-
-.chats::-webkit-scrollbar {
-  display: none; /* For Chrome, Safari, and Opera */
+  margin: 10px 30px;
 }
 
 .chat {
-  margin: 1rem;
-  padding: 1rem 2rem;
-  font-size: 1.7rem;
-  align-items: center;
   display: flex;
+  align-items: flex-start;
+  margin: 10px 0;
+}
+
+
+.chat.incoming {
+  flex-direction: row;
+}
+
+.chat.outgoing {
+  flex-direction: row-reverse;
+  
 }
 
 .chatImg {
-  object-fit: cover;
-  width: 3.5rem;
-  margin-right: 2rem;
-  border-radius: 0.5rem;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin: 0 10px;
 }
 
-.outgoing {
-  width: fit-content;
-  border-radius: 0.5rem;
-  align-self: flex-end;
-  justify-content: flex-end;
-  margin-left: auto;
+.chatImage {
+  max-width: 200px;
+  border-radius: 10px;
+  margin: 5px 0;
 }
 
-.incoming {
-  width: fit-content;
-  border-radius: 0.5rem;
-  align-self: flex-start;
-  justify-content: flex-start;
-  background: rgba(28, 30, 58, 1);
-  margin-right: auto;
+::-webkit-scrollbar {
+  width: 8px;
 }
 
-/* Preview section inside prompt area */
+::-webkit-scrollbar-track {
+  background: #2B2C2F; }
+
+::-webkit-scrollbar-thumb {
+  background-color: #000; 
+  border-radius: 10px;
+  border: 2px solid #2B2C2F; 
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #333; 
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color:  #4b4c51 #2B2C2F; 
+}
+
+
+.txt {
+  background-color: #4b4c51;
+  color: #fff;
+  padding: 10px 15px;
+  border-radius: 10px;
+  max-width: 70%;
+  word-wrap: break-word;
+  line-height: 1.4;
+  white-space: pre-wrap;
+}
+
+.chatFooter {
+  display: flex;
+  align-items: center;
+  margin-top: 2px;
+  padding: 10px;
+  background-color: #202123;
+  border-radius: 20px;
+  position: relative;
+  
+}
+
+.inp {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  margin-right: 10px;
+  position: relative;
+  
+}
+
+.inp .plus {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.inp .plus img {
+  width: 25px;
+  height: 25px;
+}
+
+.chatFooter .chatTextarea {
+  width: 100%;
+  font-size: 1.4rem;
+  padding: 10px;
+  resize: none;
+  background: transparent;
+  border: none;
+  color: #fff;
+  outline: none;
+  max-height: 7em; 
+  min-height: 0.5em;
+  overflow-y: auto;
+  border-radius: 10px;
+}
+
+/* Send Button Styling */
+.send {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.send img {
+  width: 25px;
+  height: 25px;
+}
+
+.filePreviews {
+  display: flex;
+  gap: 10px; 
+  margin-right: 10px; 
+}
+
+.filePreview {
+  position: relative; 
+}
+
+.previewImage {
+  width: 40px; 
+  height: 40px; 
+  border-radius: 4px; 
+}
+
+
+.imagePreviewContainer {
+  position: relative;
+  display: inline-block;
+  border-radius: 5px;
+}
+
 .imagePreviewInChatTab {
   display: flex;
   align-items: center;
-  margin-left: 5px ; /* Add margin for spacing */
-  justify-content: flex-start;
-  padding: 5px;
-  background-color: #2e2e2e;
-  border-radius: 8px;
-  max-width: 100%;
 }
 
 .smallPreviewImage {
-  max-width: 50px;
-  max-height: 50px;
-  margin-right: 8px;
+  width: 50px;
+  height: 50px;
+  border-radius: 5px;
+  margin: 5px;
 }
 
 .clearPreview {
-  background: none;
-  border: none;
-  font-size: 16px;
-  cursor: pointer;
-  color: black;
-}
-
-.textareaInput {
-  width: calc(100% - 2rem);
-  outline: none;
-  padding: 1rem;
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background-color: red;
   color: white;
   border: none;
-  background: transparent;
-  font-size: 1.8rem;
-  line-height: 1.5;
-  resize: none; /* Prevent user resizing manually */
-  overflow-y: hidden; /* Hide scroll until necessary */
+  border-radius: 50%;
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+  font-size: 12px;
 }
 
-.icon {
-  width: 50px; /* Increase the width */
-  height: 50px; /* Increase the height */
-  cursor: pointer; /* Optional: change cursor to pointer */
+
+.fileLink {
+  color: #0084ff;
+  text-decoration: none;
 }
 
+.fileLink:hover {
+  text-decoration: underline;
+}
+
+
+.user {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+.dropdown {
+  position: absolute;
+  top: 70px;
+  right: 20px;
+  background-color: #33374b;
+  border-radius: 8px;
+  width: 150px;
+  z-index: 1000;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+}
+
+.dropdown ul {
+  list-style-type: none;
+  padding: 10px 0;
+  margin: 0;
+}
+
+.dropdown .list {
+  padding: 10px;
+  color: #fff;
+  cursor: pointer;
+  text-align: center;
+  transition: background-color 0.3s ease;
+}
+
+.dropdown .list:hover {
+  background-color: #44485c;
+}

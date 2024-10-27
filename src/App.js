@@ -4,7 +4,7 @@ import Home from './home/Home';
 
 
 function App() {
-  const [sidebar, setSidebar] = useState(false);
+  const [sidebar, setSidebar] = useState(true);
 
   return (
     <Router>
