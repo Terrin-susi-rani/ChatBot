@@ -1,54 +1,52 @@
 .container {
-    width: 100vw;
-    display: flex;
-    height: 8vh;
-    align-items: center;
-    justify-content: space-between;
-    background: #5A4bff;
-    padding: 15px;
-  }
-  
-  .toggle-icon {
-    width: 40px;
-    cursor: pointer;
-    margin-left: 40px;
-    margin: 15px;
-  }
-  .user{
-    width: 40px;
-    cursor: pointer;
-    margin-left: 40px;
-    margin: 15px;
-    border-radius: 50px;
-  }
+  width: 100vw;
+  display: flex;
+  height: 8vh;
+  align-items: center;
+  justify-content: space-between;
+  background: transparent; /* Fully transparent background */
+  padding: 15px;
+}
 
-  
-  .dropdown {
-    background-color: #fff;
-    padding: 4px;
-    width: 12vw;
-    border-radius: 5px;
-    height: auto;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    position: absolute;
-    right: 14px;
-    top: 50px;
-    color: black;
-    
-    
-  }
-  
-  .list {
-    padding: 10px;
-    font-size: large;
-    cursor: pointer;
-    color: black;
-    margin-left: 5px;
-  
-  }
-  
-  .list:hover {
-    background-color: #796dfa;
-    color: white;
-    border-radius: 18px;
+.toggle-icon {
+  width: 40px;
+  cursor: pointer;
+  margin-left: 40px;
+  margin: 15px;
+}
+
+.user {
+  width: 40px;
+  cursor: pointer;
+  margin-left: 40px;
+  margin: 15px;
+  border-radius: 50px;
+}
+
+.dropdown {
+  background-color: transparent; /* Fully transparent dropdown background */
+  padding: 4px;
+  width: 12vw;
+  border-radius: 5px;
+  height: auto;
+  box-shadow: none; /* Remove shadow to maintain transparency */
+  position: absolute;
+  right: 14px;
+  top: 50px;
+  color: black;
+}
+
+.list {
+  padding: 10px;
+  font-size: large;
+  cursor: pointer;
+  color: black;
+  margin-left: 5px;
+  background-color: transparent; /* Make list items transparent */
+}
+
+.list:hover {
+  background-color: rgba(121, 109, 250, 0.5); /* Use semi-transparent color for hover effect */
+  color: white;
+  border-radius: 18px;
 }
