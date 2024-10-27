@@ -15,12 +15,11 @@ body {
   display: flex;
   height: 100vh;
   overflow: hidden;
-}
-
-.App.sidebar-open .main {
-  margin-left: 300px;
+  margin-left: 250px;
   margin-right: 100px;
 }
+
+
 
 
 .tooltip-container {
